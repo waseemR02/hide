@@ -1,0 +1,13 @@
+[project]
+name = "hide"
+version = "0.1.0"
+description = "Copyright data embedding via steganography"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pillow>=10.4.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
