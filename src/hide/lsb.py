@@ -1,24 +1,28 @@
+"""
+This module provides functions to encode and decode data into/from images using the Least Significant Bit (LSB) technique.
+"""
+
 from PIL import Image
 
 
-def encode() -> None:
+def encode(img_path: str, data: str, new_img_name: str) -> None:
     """
-    Encode data into an image provided by the user and save the new image.
+    Encode data into an image and save the new image.
+
+    Args:
+    img_path (str): The path to the image file.
+    data (str): The data to be encoded into the image.
+    new_img_name (str): The name of the new image file to be saved.
 
     Raises:
     ValueError: If the provided data is empty.
     """
-    img_path = input("Enter image name (with extension): ")
-    image = Image.open(img_path, "r")
-
-    data = input("Enter data to be encoded: ")
     if not data:
         raise ValueError("Data is empty")
 
+    image = Image.open(img_path, "r")
     new_image = image.copy()
     embed_data(new_image, data)
-
-    new_img_name = input("Enter the name of the new image (with extension): ")
     new_image.save(new_img_name, new_img_name.split(".")[-1].upper())
 
 
@@ -111,14 +115,16 @@ def generate_binary_data(data: str) -> list[str]:
     return [format(ord(char), "08b") for char in data]
 
 
-def decode() -> str:
+def decode(img_path: str) -> str:
     """
     Decode data from an image provided by the user.
+
+    Args:
+    img_path (str): The path to the image file.
 
     Returns:
     str: The decoded data from the image.
     """
-    img_path = input("Enter image name (with extension): ")
     image = Image.open(img_path, "r")
 
     decoded_data = ""
@@ -142,4 +148,3 @@ def decode() -> str:
             break
 
     return decoded_data
-
