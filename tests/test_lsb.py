@@ -49,6 +49,7 @@ def test_embed_data(setup_image):
 
     assert original_pixels != modified_pixels
 
+
 def test_decode(setup_image):
     img_path, new_img_name, data = setup_image
     # Test encoding with valid data
@@ -58,4 +59,3 @@ def test_decode(setup_image):
     # Test decoding the data from the image
     decoded_data = decode(new_img_name)
     assert decoded_data == data
-
